@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import ContactPage from "./Contact";
+import ContactPage from "../(landing)/common/contact/Contact";
+
 
 export const metadata: Metadata = {
   title: "Contact Splitat | Store Sharing Platform in India",
