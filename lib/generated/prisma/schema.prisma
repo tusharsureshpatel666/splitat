@@ -1,0 +1,344 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ShareMode {
+  HOURS_BY_HOURS
+  DAYS_BY_DAYS
+  SPLIT_STORE
+  DAY_OR_NIGHT
+  Weekend
+  Regular
+}
+
+model User {
+  id    String  @id @default(uuid())
+  name  String?
+  email String? @unique
+  image String?
+
+  phone         String? @unique
+  phoneVerified Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  stores            Store[]        @relation("OwerStores")
+  likedStores       StoreLike[]
+  notification      Notification[]
+  userBussinessType String?
+
+  messages         Message[]
+  buyer            Conversation[]
+  UserPresence     UserPresence[]
+  Agreement        Agreement[]
+  TourNotification TourNotification[]
+}
+
+model Otp {
+  id        String   @id @default(cuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+// ==========================
+// CONVERSATION
+// ==========================
+
+// ==========================
+// CONVERSATION ↔ USER (JOIN TABLE)
+// ==========================
+
+// ==========================
+// STORE
+// ==========================
+model Store {
+  id String @id @default(uuid())
+
+  ownerId String
+  owner   User   @relation("OwerStores", fields: [ownerId], references: [id])
+
+  title          String
+  desc           String
+  peopleDesc     String
+  flatno         String?
+  streetAddress  String?
+  NearbyLandMark String?
+  areaLocality   String?
+  fullAddress    String
+
+  storeSize    String
+  businessType String
+  videoUrl     String?
+
+  country String?
+  state   String?
+  city    String?
+  pin     String?
+
+  latitude  Float?
+  longitude Float?
+
+  bannerImageUrl String?
+  images         StoreImage[]
+
+  priceInr Int
+
+  shareMode  ShareMode
+  startTime  String?
+  endTime    String?
+  days       String[]
+  sqft       Int?
+  dayOrNight String?
+
+  likes StoreLike[]
+
+  store     Conversation[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  Agreement Agreement[]
+  rentedout Boolean?       @default(false)
+}
+
+model CommunityStore {
+  id String @id @default(uuid())
+
+  ownerId String
+
+  title      String
+  desc       String
+  peopleDesc String
+
+  videoUrl String?
+
+  flatno         String?
+  streetAddress  String?
+  NearbyLandMark String?
+  areaLocality   String?
+  fullAddress    String
+
+  storeSize    String
+  businessType String
+
+  country String
+  state   String
+  city    String
+  pin     String
+
+  latitude  Float?
+  longitude Float?
+
+  bannerImageUrl String?
+  images         CommunityImage[]
+
+  priceInr Int
+
+  // shareMode removed for now (can be added later)
+
+  startTime  String?
+  endTime    String?
+  days       String[]
+  sqft       Int?
+  dayOrNight String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CommunityImage {
+  id             String         @id @default(cuid())
+  storeId        String
+  communitystore CommunityStore @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  url            String
+  order          Int            @default(0)
+  createdAt      DateTime       @default(now())
+
+  @@index([storeId])
+}
+
+// ==========================
+// STORE IMAGE
+// ==========================
+model StoreImage {
+  id        String   @id @default(cuid())
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  url       String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([storeId])
+}
+
+// ==========================
+// STORE LIKE
+// ==========================
+model StoreLike {
+  id      String @id @default(uuid())
+  userId  String
+  storeId String
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  store Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, storeId])
+  @@index([storeId])
+}
+
+model Conversation {
+  id String @id @default(uuid())
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  buyerId String
+  buyer   User   @relation(fields: [buyerId], references: [id])
+
+  createdAt     DateTime @default(now())
+  lastMessageAt DateTime @default(now())
+
+  messages     Message[]
+  notification Notification[]
+  UserPresence UserPresence[]
+
+  @@unique([storeId, buyerId])
+  @@index([buyerId])
+  @@index([storeId])
+}
+
+model Message {
+  id String @id @default(uuid())
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  senderId String
+  sender   User   @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  text String
+  seen Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([conversationId])
+  @@index([senderId])
+}
+
+model Notification {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  message String
+  isRead  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([conversationId])
+}
+
+model TourNotification {
+  id        String  @id @default(cuid())
+  userId    String
+  message   String
+  read      Boolean @default(false)
+  userImage String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model UserPresence {
+  userId         String        @id
+  user           User          @relation(fields: [userId], references: [id])
+  conversationId String?
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  updatedAt      DateTime      @updatedAt
+}
+
+model Agreement {
+  id             String    @id
+  userid         String
+  user           User      @relation(fields: [userid], references: [id])
+  storeid        String
+  store          Store     @relation(fields: [storeid], references: [id])
+  ownerName      String
+  tenantName     String
+  price          String
+  shareMode      ShareMode
+  startTime      String?
+  endTime        String?
+  days           String[]
+  sqft           Int?
+  dayOrNight     String?
+  flatno         String
+  streetAddress  String
+  NearbyLandMark String
+  areaLocality   String
+  country        String
+  state          String
+  city           String
+  pin            String
+  bussinessType  String
+}
+
+model StoreAnlyalic {
+  id            String @id
+  lat           String
+  log           String
+  userBussiness String
+  earning       String
+  audience      String
+  compitation   String
+  FootStep      String
+}
+
+model BusinessTypeCache {
+  id String @id @default(cuid())
+
+  businessType String   @unique
+  places       Json
+  createdAt    DateTime @default(now())
+}
+
+model Tour {
+  id       String @id @default(uuid())
+  userId   String
+  storeId  String
+  fullname String
+  email    String
+  phone    String
+  message  String
+}
+
+model Blog {
+  id       String  @id @default(uuid())
+  title    String
+  slug     String  @unique
+  content  String // full blog content (HTML or Markdown)
+  excerpt  String? // short summary for listing page
+  imageSrc String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

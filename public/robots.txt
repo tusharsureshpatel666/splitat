@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://splitat.com
+
+# Sitemaps
+Sitemap: https://splitat.com/sitemap.xml

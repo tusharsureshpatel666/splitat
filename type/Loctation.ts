@@ -1,0 +1,28 @@
+// delhiLocation.ts
+export const DELHI_LOCATION = {
+  country: "India",
+  state: "Delhi",
+  cities: [
+    "New Delhi",
+    "Dwarka",
+    "Rohini",
+    "Pitampura",
+    "Janakpuri",
+    "Lajpat Nagar",
+    "Saket",
+    "Vasant Kunj",
+    "Karol Bagh",
+    "Rajouri Garden",
+    "Tilak Nagar",
+    "Uttam Nagar",
+    "Mayur Vihar",
+    "Preet Vihar",
+    "Shahdara",
+    "Dilshad Garden",
+    "Connaught Place",
+    "Chanakyapuri",
+    "Kalkaji",
+    "Greater Kailash",
+  ],
+  pinPrefix: "110",
+};
