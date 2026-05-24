@@ -22,6 +22,8 @@ export async function GET(
           id: true,
           name: true,
           image: true,
+          phone: true,
+          
         },
       },
       store: {
@@ -36,6 +38,8 @@ export async function GET(
               id: true,
               name: true,
               image: true,
+               phone: true,
+        
             },
           },
         },
@@ -56,11 +60,13 @@ export async function GET(
         name: conversation.store.title,
         image:
           conversation.store.bannerImageUrl || "/store-banner-fallback.png",
+        phone: conversation.buyer.phone || "",
       }
     : {
         id: conversation.store.id,
         name: conversation.store.owner.name,
         image: conversation.store.owner.image || "/avatar.avif",
+         phone: conversation.store.owner.phone || "",
       };
 
   return NextResponse.json(header);

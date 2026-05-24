@@ -13,6 +13,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { PiRocketLaunchFill } from "react-icons/pi";
 import { MdAttachMoney } from "react-icons/md";
+import toast from "react-hot-toast";
 export default function ChatHeader({
   conversationId,
 }: {
@@ -22,6 +23,7 @@ export default function ChatHeader({
     id: string
     name: string;
     image: string;
+    phone:string;
   } | null>(null);
 
   const [loading, setLoading] = useState(true);
@@ -36,7 +38,7 @@ export default function ChatHeader({
           `/api/conversation/chatheader/${conversationId}`,
         );
         setHeader(res.data);
-        console.log(res)
+        console.log(res.data.phone)
       } catch (error) {
         console.error("Header fetch error:", error);
       } finally {
@@ -53,6 +55,18 @@ export default function ChatHeader({
   }
 
   if (!header) return null;
+
+ const handleCopyPhone = async () => {
+  if (!header.phone) return;
+
+  try {
+    await navigator.clipboard.writeText(header.phone);
+
+     toast.success("Phone Number Copied")
+  } catch (error) {
+    console.error("Copy failed", error);
+  }
+};
 
   return (
     <div className="flex items-center justify-between gap-3 border-b px-4 py-3 bg-white dark:bg-black">
@@ -84,7 +98,7 @@ export default function ChatHeader({
         </div>
       </div>
       <div className="flex gap-3">
-        <Button variant={"secondary"}  className="rounded-full">
+        <Button onClick={handleCopyPhone} variant={"secondary"}  className="rounded-full">
           <Phone className="w-5 h-5" />
           <span className="hidden sm:inline ">Call</span>
         </Button>
