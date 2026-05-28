@@ -47,6 +47,7 @@ model User {
   UserPresence UserPresence[]
   Agreement Agreement[]
   TourNotification TourNotification[]
+  Appointment Appointment[]
  
  
 
@@ -122,6 +123,7 @@ model Store {
   updatedAt       DateTime    @updatedAt
   Agreement Agreement[]
   rentedout Boolean? @default(false)
+  Appointment Appointment[]
 }
 
 model CommunityStore {
@@ -372,4 +374,30 @@ model Blog {
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+enum AppointmentStatus {
+  PENDING
+  APPROVED
+  CANCELLED
+  COMPLETED
+}
+
+model Appointment {
+    id String @id @default(uuid())
+    userId String
+    user User @relation(fields: [userId], references: [id])
+    storeId String
+    store Store @relation(fields: [storeId], references: [id])
+    Date DateTime @default(now())
+
+    startTime DateTime
+    endTime DateTime
+
+    status AppointmentStatus @default(PENDING)
+
+    createdat DateTime @default(now())
+    
+    
+
 }

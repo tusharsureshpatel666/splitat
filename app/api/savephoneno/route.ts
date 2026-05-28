@@ -15,6 +15,8 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    
+  
 
     // ✅ Update user
     const user = await prisma.user.update({
