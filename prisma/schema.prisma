@@ -385,6 +385,9 @@ enum AppointmentStatus {
 
 model Appointment {
     id String @id @default(uuid())
+    name String
+    phoneNumber String
+
     userId String
     user User @relation(fields: [userId], references: [id])
     storeId String
@@ -392,7 +395,7 @@ model Appointment {
     Date DateTime @default(now())
 
     startTime DateTime
-    endTime DateTime
+ 
 
     status AppointmentStatus @default(PENDING)
 

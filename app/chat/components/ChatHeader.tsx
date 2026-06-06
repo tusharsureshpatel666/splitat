@@ -102,6 +102,13 @@ export default function ChatHeader({
           <Phone className="w-5 h-5" />
           <span className="hidden sm:inline ">Call</span>
         </Button>
+
+        <Link href={`/dashboard/appointed/${header.id}`}>
+          <Button className="rounded-full">
+            <FaPaperPlane className="w-5 h-5" />
+            <span className="hidden sm:inline ">Visit Place</span>
+          </Button>
+        </Link>
 {/* 
         <Link href={`/dashboard/appointed/${}`}></Link> */}
         {/* <Link href={`/dashboard/tour/${header.id}`}>
