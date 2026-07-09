@@ -1,18 +1,24 @@
-"use client"
-import React from 'react'
-import AppointmentStep from '../components/AppointmentStep'
-import { useParams } from 'next/navigation'
+"use client";
+
+import React, { useState } from "react";
+import AppointmentStep from "../components/AppointmentStep";
+import { useParams } from "next/navigation";
 
 const Appopage = () => {
-    const id =  useParams()
-    console.log(id)
+  const { id } = useParams();
 
-    
+
   return (
-    <div className='w-full'>
-       <AppointmentStep id={id.id}/>
-    </div>
-  )
-}
+    <div className="w-full max-w-7xl ">
+      {/* Main Content */}
+      <div className=" flex justify-center items-center p-4">
+        <AppointmentStep id={id}/>
+      </div>
 
-export default Appopage
+      {/* Bottom Navigation */}
+      
+    </div>
+  );
+};
+
+export default Appopage;

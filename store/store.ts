@@ -46,6 +46,15 @@ interface SearchStep {
   resetStep: () => void;
 }
 
+interface TourStep {
+  sStep: number;
+  setSStep: (sStep: number) => void;
+  nextSStep: () => void;
+  prevStep: () => void;
+  resetStep: () => void;
+}
+
+
 type ParticState = {
   share: ShareConfig;
   setMode: (mode: ParticOption) => void;
@@ -134,3 +143,12 @@ export const useSearchStoreData = create<SearchStoreData>((set) => ({
   setArea: (value) => set({ area: value }),
   setPin: (value) => set({ pin: value }),
 }));
+
+
+export const useTourStep = create<TourStep>((set) => ({
+    sStep: 1,
+  setSStep: (sStep) => set({ sStep }),
+  nextSStep: () => set((state) => ({ sStep: state.sStep + 1 })),
+  prevStep: () => set((state) => ({ sStep: state.sStep - 1 })),
+  resetStep: () => set({ sStep: 0 }),
+}))
