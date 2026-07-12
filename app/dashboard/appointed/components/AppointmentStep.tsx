@@ -12,14 +12,7 @@ import { Button } from "@/components/ui/button";
 import FaceCapture from "./facecapture/Facecapture";
 
 const AppointmentStep = ({ id }) => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phone: "",
-    email: "",
-    preferredDate: "",
-    preferredTime: "",
-    message: "",
-  });
+
 
 const timeSlots = [
   {
@@ -55,27 +48,23 @@ const [selectedTime, setSelectedTime] = useState("");
   const [date , setDate] = useState(mindate)
   const [loading, setLoading] = useState(false);
   const [shake, setShake] = useState(false);
-  
+  const [clip , setClip] = useState("")
   
 
 
  
   const { sStep, setSStep, nextSStep, prevStep, resetStep } = useTourStep()
   console.log(date)
-   const isStepValid =
-    (sStep === 1 && !!date ) ||
-    (sStep === 2 && !!selectedTime)
+ const isStepValid =
+  sStep === 1
+    ? !!date
+    : sStep === 2
+    ? !!selectedTime
+    : sStep === 3
+    ? clip.trim() !== ""
+    : false;
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
-  const handleFinish = () => {
-    console.log(formData.fullName, formData.phone, formData.email)
-  }
  
    const handleNext = () => {
     if (!isStepValid) {
@@ -85,6 +74,12 @@ const [selectedTime, setSelectedTime] = useState("");
     }
     nextSStep();
   };
+
+  const handleFinish = () =>{
+
+    const data = {date, clip, selectedTime}
+    console.log(data)
+  }
 
 
 
@@ -139,14 +134,11 @@ const [selectedTime, setSelectedTime] = useState("");
     )}
 {sStep === 2 && (
   <div className="w-full max-w-3xl mx-auto space-y-8">
-    <div className="text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-300">
-        Choose a Time
-      </h1>
-      <p className="mt-2 text-gray-500">
-        Select an available appointment slot.
-      </p>
-    </div>
+  <Heading
+     title="Pick a Time "
+     description="Choose the time for the appointment"
+     className="text-center text-2xl md:text-4xl lg:text-5xl"
+     />
 
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {timeSlots.map((item) => (
@@ -183,21 +175,17 @@ const [selectedTime, setSelectedTime] = useState("");
 {sStep === 3 && (
   <div>
     <div className="flex flex-col gap-3">
-        <div className="text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-300">
-        Clip your Image
-      </h1>
-      <p className="mt-2 text-gray-500">
-        Clip your Image we need this for the verfication .
-      </p>
-    </div>
+     <Heading
+     title="Clip your Image "
+     description="Take your Image for verfication"
+     className="text-center text-2xl md:text-4xl lg:text-5xl"
+     />
       <FaceCapture
       onCapture={(image) => {
-        setFormData((prev) => ({
-          ...prev,
-          image,
-        }));
+        setClip(image)
       }}
+      
+      
     />
     </div>
   </div>
