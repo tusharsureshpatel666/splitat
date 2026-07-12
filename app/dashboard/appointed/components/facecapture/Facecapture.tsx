@@ -48,7 +48,7 @@ export default function FaceCapture({
   return (
     <div className="flex flex-col items-center gap-6">
 
-      <div className="relative w-[420px] h-[420px] rounded-3xl overflow-hidden bg-black shadow-xl">
+      <div className="relative w-[300px] h-[300px] md:w-[300px] md:h-[300px] lg:w-[420px] lg:h-[420px] rounded-3xl overflow-hidden bg-black shadow-xl">
 
         {!capturedImage ? (
           <>
