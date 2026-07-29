@@ -103,6 +103,11 @@ export type Blog = $Result.DefaultSelection<Prisma.$BlogPayload>
  * 
  */
 export type Appointment = $Result.DefaultSelection<Prisma.$AppointmentPayload>
+/**
+ * Model AppointmentNotif
+ * 
+ */
+export type AppointmentNotif = $Result.DefaultSelection<Prisma.$AppointmentNotifPayload>
 
 /**
  * Enums
@@ -252,7 +257,7 @@ export class PrismaClient<
    * 
    * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
@@ -439,6 +444,16 @@ export class PrismaClient<
     * ```
     */
   get appointment(): Prisma.AppointmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.appointmentNotif`: Exposes CRUD operations for the **AppointmentNotif** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AppointmentNotifs
+    * const appointmentNotifs = await prisma.appointmentNotif.findMany()
+    * ```
+    */
+  get appointmentNotif(): Prisma.AppointmentNotifDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -489,8 +504,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.5.0
-   * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+   * Prisma Client JS version: 7.8.0
+   * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
    */
   export type PrismaVersion = {
     client: string
@@ -890,7 +905,8 @@ export namespace Prisma {
     BusinessTypeCache: 'BusinessTypeCache',
     Tour: 'Tour',
     Blog: 'Blog',
-    Appointment: 'Appointment'
+    Appointment: 'Appointment',
+    AppointmentNotif: 'AppointmentNotif'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -906,7 +922,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "otp" | "store" | "communityStore" | "communityImage" | "storeImage" | "storeLike" | "conversation" | "message" | "notification" | "tourNotification" | "userPresence" | "agreement" | "storeAnlyalic" | "businessTypeCache" | "tour" | "blog" | "appointment"
+      modelProps: "user" | "otp" | "store" | "communityStore" | "communityImage" | "storeImage" | "storeLike" | "conversation" | "message" | "notification" | "tourNotification" | "userPresence" | "agreement" | "storeAnlyalic" | "businessTypeCache" | "tour" | "blog" | "appointment" | "appointmentNotif"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2242,6 +2258,80 @@ export namespace Prisma {
           }
         }
       }
+      AppointmentNotif: {
+        payload: Prisma.$AppointmentNotifPayload<ExtArgs>
+        fields: Prisma.AppointmentNotifFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AppointmentNotifFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AppointmentNotifFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>
+          }
+          findFirst: {
+            args: Prisma.AppointmentNotifFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AppointmentNotifFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>
+          }
+          findMany: {
+            args: Prisma.AppointmentNotifFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>[]
+          }
+          create: {
+            args: Prisma.AppointmentNotifCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>
+          }
+          createMany: {
+            args: Prisma.AppointmentNotifCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AppointmentNotifCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>[]
+          }
+          delete: {
+            args: Prisma.AppointmentNotifDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>
+          }
+          update: {
+            args: Prisma.AppointmentNotifUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>
+          }
+          deleteMany: {
+            args: Prisma.AppointmentNotifDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AppointmentNotifUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AppointmentNotifUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>[]
+          }
+          upsert: {
+            args: Prisma.AppointmentNotifUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentNotifPayload>
+          }
+          aggregate: {
+            args: Prisma.AppointmentNotifAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAppointmentNotif>
+          }
+          groupBy: {
+            args: Prisma.AppointmentNotifGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AppointmentNotifGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AppointmentNotifCountArgs<ExtArgs>
+            result: $Utils.Optional<AppointmentNotifCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2368,6 +2458,7 @@ export namespace Prisma {
     tour?: TourOmit
     blog?: BlogOmit
     appointment?: AppointmentOmit
+    appointmentNotif?: AppointmentNotifOmit
   }
 
   /* Types for Logging */
@@ -2457,6 +2548,7 @@ export namespace Prisma {
     Agreement: number
     TourNotification: number
     Appointment: number
+    AppointmentNotfic: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2469,6 +2561,7 @@ export namespace Prisma {
     Agreement?: boolean | UserCountOutputTypeCountAgreementArgs
     TourNotification?: boolean | UserCountOutputTypeCountTourNotificationArgs
     Appointment?: boolean | UserCountOutputTypeCountAppointmentArgs
+    AppointmentNotfic?: boolean | UserCountOutputTypeCountAppointmentNotficArgs
   }
 
   // Custom InputTypes
@@ -2543,6 +2636,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAppointmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AppointmentWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAppointmentNotficArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentNotifWhereInput
   }
 
 
@@ -2690,6 +2790,37 @@ export namespace Prisma {
    */
   export type ConversationCountOutputTypeCountUserPresenceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserPresenceWhereInput
+  }
+
+
+  /**
+   * Count Type AppointmentCountOutputType
+   */
+
+  export type AppointmentCountOutputType = {
+    notification: number
+  }
+
+  export type AppointmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    notification?: boolean | AppointmentCountOutputTypeCountNotificationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AppointmentCountOutputType without action
+   */
+  export type AppointmentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentCountOutputType
+     */
+    select?: AppointmentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AppointmentCountOutputType without action
+   */
+  export type AppointmentCountOutputTypeCountNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentNotifWhereInput
   }
 
 
@@ -2894,6 +3025,7 @@ export namespace Prisma {
     Agreement?: boolean | User$AgreementArgs<ExtArgs>
     TourNotification?: boolean | User$TourNotificationArgs<ExtArgs>
     Appointment?: boolean | User$AppointmentArgs<ExtArgs>
+    AppointmentNotfic?: boolean | User$AppointmentNotficArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2941,6 +3073,7 @@ export namespace Prisma {
     Agreement?: boolean | User$AgreementArgs<ExtArgs>
     TourNotification?: boolean | User$TourNotificationArgs<ExtArgs>
     Appointment?: boolean | User$AppointmentArgs<ExtArgs>
+    AppointmentNotfic?: boolean | User$AppointmentNotficArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2958,6 +3091,7 @@ export namespace Prisma {
       Agreement: Prisma.$AgreementPayload<ExtArgs>[]
       TourNotification: Prisma.$TourNotificationPayload<ExtArgs>[]
       Appointment: Prisma.$AppointmentPayload<ExtArgs>[]
+      AppointmentNotfic: Prisma.$AppointmentNotifPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3371,6 +3505,7 @@ export namespace Prisma {
     Agreement<T extends User$AgreementArgs<ExtArgs> = {}>(args?: Subset<T, User$AgreementArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgreementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TourNotification<T extends User$TourNotificationArgs<ExtArgs> = {}>(args?: Subset<T, User$TourNotificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TourNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Appointment<T extends User$AppointmentArgs<ExtArgs> = {}>(args?: Subset<T, User$AppointmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    AppointmentNotfic<T extends User$AppointmentNotficArgs<ExtArgs> = {}>(args?: Subset<T, User$AppointmentNotficArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4014,6 +4149,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AppointmentScalarFieldEnum | AppointmentScalarFieldEnum[]
+  }
+
+  /**
+   * User.AppointmentNotfic
+   */
+  export type User$AppointmentNotficArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    where?: AppointmentNotifWhereInput
+    orderBy?: AppointmentNotifOrderByWithRelationInput | AppointmentNotifOrderByWithRelationInput[]
+    cursor?: AppointmentNotifWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AppointmentNotifScalarFieldEnum | AppointmentNotifScalarFieldEnum[]
   }
 
   /**
@@ -22161,33 +22320,39 @@ export namespace Prisma {
 
   export type AppointmentMinAggregateOutputType = {
     id: string | null
+    name: string | null
+    phoneNumber: string | null
     userId: string | null
     storeId: string | null
     Date: Date | null
-    startTime: Date | null
-    endTime: Date | null
+    selectTime: string | null
+    UserPhoto: string | null
     status: $Enums.AppointmentStatus | null
     createdat: Date | null
   }
 
   export type AppointmentMaxAggregateOutputType = {
     id: string | null
+    name: string | null
+    phoneNumber: string | null
     userId: string | null
     storeId: string | null
     Date: Date | null
-    startTime: Date | null
-    endTime: Date | null
+    selectTime: string | null
+    UserPhoto: string | null
     status: $Enums.AppointmentStatus | null
     createdat: Date | null
   }
 
   export type AppointmentCountAggregateOutputType = {
     id: number
+    name: number
+    phoneNumber: number
     userId: number
     storeId: number
     Date: number
-    startTime: number
-    endTime: number
+    selectTime: number
+    UserPhoto: number
     status: number
     createdat: number
     _all: number
@@ -22196,33 +22361,39 @@ export namespace Prisma {
 
   export type AppointmentMinAggregateInputType = {
     id?: true
+    name?: true
+    phoneNumber?: true
     userId?: true
     storeId?: true
     Date?: true
-    startTime?: true
-    endTime?: true
+    selectTime?: true
+    UserPhoto?: true
     status?: true
     createdat?: true
   }
 
   export type AppointmentMaxAggregateInputType = {
     id?: true
+    name?: true
+    phoneNumber?: true
     userId?: true
     storeId?: true
     Date?: true
-    startTime?: true
-    endTime?: true
+    selectTime?: true
+    UserPhoto?: true
     status?: true
     createdat?: true
   }
 
   export type AppointmentCountAggregateInputType = {
     id?: true
+    name?: true
+    phoneNumber?: true
     userId?: true
     storeId?: true
     Date?: true
-    startTime?: true
-    endTime?: true
+    selectTime?: true
+    UserPhoto?: true
     status?: true
     createdat?: true
     _all?: true
@@ -22302,11 +22473,13 @@ export namespace Prisma {
 
   export type AppointmentGroupByOutputType = {
     id: string
+    name: string
+    phoneNumber: string
     userId: string
     storeId: string
     Date: Date
-    startTime: Date
-    endTime: Date
+    selectTime: string
+    UserPhoto: string
     status: $Enums.AppointmentStatus
     createdat: Date
     _count: AppointmentCountAggregateOutputType | null
@@ -22330,24 +22503,30 @@ export namespace Prisma {
 
   export type AppointmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
+    phoneNumber?: boolean
     userId?: boolean
     storeId?: boolean
     Date?: boolean
-    startTime?: boolean
-    endTime?: boolean
+    selectTime?: boolean
+    UserPhoto?: boolean
     status?: boolean
     createdat?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     store?: boolean | StoreDefaultArgs<ExtArgs>
+    notification?: boolean | Appointment$notificationArgs<ExtArgs>
+    _count?: boolean | AppointmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["appointment"]>
 
   export type AppointmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
+    phoneNumber?: boolean
     userId?: boolean
     storeId?: boolean
     Date?: boolean
-    startTime?: boolean
-    endTime?: boolean
+    selectTime?: boolean
+    UserPhoto?: boolean
     status?: boolean
     createdat?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -22356,11 +22535,13 @@ export namespace Prisma {
 
   export type AppointmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
+    phoneNumber?: boolean
     userId?: boolean
     storeId?: boolean
     Date?: boolean
-    startTime?: boolean
-    endTime?: boolean
+    selectTime?: boolean
+    UserPhoto?: boolean
     status?: boolean
     createdat?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -22369,19 +22550,23 @@ export namespace Prisma {
 
   export type AppointmentSelectScalar = {
     id?: boolean
+    name?: boolean
+    phoneNumber?: boolean
     userId?: boolean
     storeId?: boolean
     Date?: boolean
-    startTime?: boolean
-    endTime?: boolean
+    selectTime?: boolean
+    UserPhoto?: boolean
     status?: boolean
     createdat?: boolean
   }
 
-  export type AppointmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "storeId" | "Date" | "startTime" | "endTime" | "status" | "createdat", ExtArgs["result"]["appointment"]>
+  export type AppointmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phoneNumber" | "userId" | "storeId" | "Date" | "selectTime" | "UserPhoto" | "status" | "createdat", ExtArgs["result"]["appointment"]>
   export type AppointmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     store?: boolean | StoreDefaultArgs<ExtArgs>
+    notification?: boolean | Appointment$notificationArgs<ExtArgs>
+    _count?: boolean | AppointmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AppointmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -22397,14 +22582,17 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       store: Prisma.$StorePayload<ExtArgs>
+      notification: Prisma.$AppointmentNotifPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
+      phoneNumber: string
       userId: string
       storeId: string
       Date: Date
-      startTime: Date
-      endTime: Date
+      selectTime: string
+      UserPhoto: string
       status: $Enums.AppointmentStatus
       createdat: Date
     }, ExtArgs["result"]["appointment"]>
@@ -22803,6 +22991,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     store<T extends StoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoreDefaultArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    notification<T extends Appointment$notificationArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$notificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22833,11 +23022,13 @@ export namespace Prisma {
    */
   interface AppointmentFieldRefs {
     readonly id: FieldRef<"Appointment", 'String'>
+    readonly name: FieldRef<"Appointment", 'String'>
+    readonly phoneNumber: FieldRef<"Appointment", 'String'>
     readonly userId: FieldRef<"Appointment", 'String'>
     readonly storeId: FieldRef<"Appointment", 'String'>
     readonly Date: FieldRef<"Appointment", 'DateTime'>
-    readonly startTime: FieldRef<"Appointment", 'DateTime'>
-    readonly endTime: FieldRef<"Appointment", 'DateTime'>
+    readonly selectTime: FieldRef<"Appointment", 'String'>
+    readonly UserPhoto: FieldRef<"Appointment", 'String'>
     readonly status: FieldRef<"Appointment", 'AppointmentStatus'>
     readonly createdat: FieldRef<"Appointment", 'DateTime'>
   }
@@ -23241,6 +23432,30 @@ export namespace Prisma {
   }
 
   /**
+   * Appointment.notification
+   */
+  export type Appointment$notificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    where?: AppointmentNotifWhereInput
+    orderBy?: AppointmentNotifOrderByWithRelationInput | AppointmentNotifOrderByWithRelationInput[]
+    cursor?: AppointmentNotifWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AppointmentNotifScalarFieldEnum | AppointmentNotifScalarFieldEnum[]
+  }
+
+  /**
    * Appointment without action
    */
   export type AppointmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -23256,6 +23471,1103 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: AppointmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AppointmentNotif
+   */
+
+  export type AggregateAppointmentNotif = {
+    _count: AppointmentNotifCountAggregateOutputType | null
+    _min: AppointmentNotifMinAggregateOutputType | null
+    _max: AppointmentNotifMaxAggregateOutputType | null
+  }
+
+  export type AppointmentNotifMinAggregateOutputType = {
+    id: string | null
+    appoimentId: string | null
+    receiverId: string | null
+    title: string | null
+    message: string | null
+    isRead: boolean | null
+    createAt: Date | null
+  }
+
+  export type AppointmentNotifMaxAggregateOutputType = {
+    id: string | null
+    appoimentId: string | null
+    receiverId: string | null
+    title: string | null
+    message: string | null
+    isRead: boolean | null
+    createAt: Date | null
+  }
+
+  export type AppointmentNotifCountAggregateOutputType = {
+    id: number
+    appoimentId: number
+    receiverId: number
+    title: number
+    message: number
+    isRead: number
+    createAt: number
+    _all: number
+  }
+
+
+  export type AppointmentNotifMinAggregateInputType = {
+    id?: true
+    appoimentId?: true
+    receiverId?: true
+    title?: true
+    message?: true
+    isRead?: true
+    createAt?: true
+  }
+
+  export type AppointmentNotifMaxAggregateInputType = {
+    id?: true
+    appoimentId?: true
+    receiverId?: true
+    title?: true
+    message?: true
+    isRead?: true
+    createAt?: true
+  }
+
+  export type AppointmentNotifCountAggregateInputType = {
+    id?: true
+    appoimentId?: true
+    receiverId?: true
+    title?: true
+    message?: true
+    isRead?: true
+    createAt?: true
+    _all?: true
+  }
+
+  export type AppointmentNotifAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppointmentNotif to aggregate.
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentNotifs to fetch.
+     */
+    orderBy?: AppointmentNotifOrderByWithRelationInput | AppointmentNotifOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AppointmentNotifWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentNotifs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentNotifs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AppointmentNotifs
+    **/
+    _count?: true | AppointmentNotifCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AppointmentNotifMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AppointmentNotifMaxAggregateInputType
+  }
+
+  export type GetAppointmentNotifAggregateType<T extends AppointmentNotifAggregateArgs> = {
+        [P in keyof T & keyof AggregateAppointmentNotif]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAppointmentNotif[P]>
+      : GetScalarType<T[P], AggregateAppointmentNotif[P]>
+  }
+
+
+
+
+  export type AppointmentNotifGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentNotifWhereInput
+    orderBy?: AppointmentNotifOrderByWithAggregationInput | AppointmentNotifOrderByWithAggregationInput[]
+    by: AppointmentNotifScalarFieldEnum[] | AppointmentNotifScalarFieldEnum
+    having?: AppointmentNotifScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AppointmentNotifCountAggregateInputType | true
+    _min?: AppointmentNotifMinAggregateInputType
+    _max?: AppointmentNotifMaxAggregateInputType
+  }
+
+  export type AppointmentNotifGroupByOutputType = {
+    id: string
+    appoimentId: string
+    receiverId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt: Date
+    _count: AppointmentNotifCountAggregateOutputType | null
+    _min: AppointmentNotifMinAggregateOutputType | null
+    _max: AppointmentNotifMaxAggregateOutputType | null
+  }
+
+  type GetAppointmentNotifGroupByPayload<T extends AppointmentNotifGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AppointmentNotifGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AppointmentNotifGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AppointmentNotifGroupByOutputType[P]>
+            : GetScalarType<T[P], AppointmentNotifGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AppointmentNotifSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    appoimentId?: boolean
+    receiverId?: boolean
+    title?: boolean
+    message?: boolean
+    isRead?: boolean
+    createAt?: boolean
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+    receiver?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentNotif"]>
+
+  export type AppointmentNotifSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    appoimentId?: boolean
+    receiverId?: boolean
+    title?: boolean
+    message?: boolean
+    isRead?: boolean
+    createAt?: boolean
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+    receiver?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentNotif"]>
+
+  export type AppointmentNotifSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    appoimentId?: boolean
+    receiverId?: boolean
+    title?: boolean
+    message?: boolean
+    isRead?: boolean
+    createAt?: boolean
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+    receiver?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentNotif"]>
+
+  export type AppointmentNotifSelectScalar = {
+    id?: boolean
+    appoimentId?: boolean
+    receiverId?: boolean
+    title?: boolean
+    message?: boolean
+    isRead?: boolean
+    createAt?: boolean
+  }
+
+  export type AppointmentNotifOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "appoimentId" | "receiverId" | "title" | "message" | "isRead" | "createAt", ExtArgs["result"]["appointmentNotif"]>
+  export type AppointmentNotifInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+    receiver?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AppointmentNotifIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+    receiver?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AppointmentNotifIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+    receiver?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $AppointmentNotifPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AppointmentNotif"
+    objects: {
+      appointment: Prisma.$AppointmentPayload<ExtArgs>
+      receiver: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      appoimentId: string
+      receiverId: string
+      title: string
+      message: string
+      isRead: boolean
+      createAt: Date
+    }, ExtArgs["result"]["appointmentNotif"]>
+    composites: {}
+  }
+
+  type AppointmentNotifGetPayload<S extends boolean | null | undefined | AppointmentNotifDefaultArgs> = $Result.GetResult<Prisma.$AppointmentNotifPayload, S>
+
+  type AppointmentNotifCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AppointmentNotifFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AppointmentNotifCountAggregateInputType | true
+    }
+
+  export interface AppointmentNotifDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AppointmentNotif'], meta: { name: 'AppointmentNotif' } }
+    /**
+     * Find zero or one AppointmentNotif that matches the filter.
+     * @param {AppointmentNotifFindUniqueArgs} args - Arguments to find a AppointmentNotif
+     * @example
+     * // Get one AppointmentNotif
+     * const appointmentNotif = await prisma.appointmentNotif.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AppointmentNotifFindUniqueArgs>(args: SelectSubset<T, AppointmentNotifFindUniqueArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AppointmentNotif that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AppointmentNotifFindUniqueOrThrowArgs} args - Arguments to find a AppointmentNotif
+     * @example
+     * // Get one AppointmentNotif
+     * const appointmentNotif = await prisma.appointmentNotif.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AppointmentNotifFindUniqueOrThrowArgs>(args: SelectSubset<T, AppointmentNotifFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppointmentNotif that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifFindFirstArgs} args - Arguments to find a AppointmentNotif
+     * @example
+     * // Get one AppointmentNotif
+     * const appointmentNotif = await prisma.appointmentNotif.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AppointmentNotifFindFirstArgs>(args?: SelectSubset<T, AppointmentNotifFindFirstArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppointmentNotif that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifFindFirstOrThrowArgs} args - Arguments to find a AppointmentNotif
+     * @example
+     * // Get one AppointmentNotif
+     * const appointmentNotif = await prisma.appointmentNotif.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AppointmentNotifFindFirstOrThrowArgs>(args?: SelectSubset<T, AppointmentNotifFindFirstOrThrowArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AppointmentNotifs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AppointmentNotifs
+     * const appointmentNotifs = await prisma.appointmentNotif.findMany()
+     * 
+     * // Get first 10 AppointmentNotifs
+     * const appointmentNotifs = await prisma.appointmentNotif.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const appointmentNotifWithIdOnly = await prisma.appointmentNotif.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AppointmentNotifFindManyArgs>(args?: SelectSubset<T, AppointmentNotifFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AppointmentNotif.
+     * @param {AppointmentNotifCreateArgs} args - Arguments to create a AppointmentNotif.
+     * @example
+     * // Create one AppointmentNotif
+     * const AppointmentNotif = await prisma.appointmentNotif.create({
+     *   data: {
+     *     // ... data to create a AppointmentNotif
+     *   }
+     * })
+     * 
+     */
+    create<T extends AppointmentNotifCreateArgs>(args: SelectSubset<T, AppointmentNotifCreateArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AppointmentNotifs.
+     * @param {AppointmentNotifCreateManyArgs} args - Arguments to create many AppointmentNotifs.
+     * @example
+     * // Create many AppointmentNotifs
+     * const appointmentNotif = await prisma.appointmentNotif.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AppointmentNotifCreateManyArgs>(args?: SelectSubset<T, AppointmentNotifCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AppointmentNotifs and returns the data saved in the database.
+     * @param {AppointmentNotifCreateManyAndReturnArgs} args - Arguments to create many AppointmentNotifs.
+     * @example
+     * // Create many AppointmentNotifs
+     * const appointmentNotif = await prisma.appointmentNotif.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AppointmentNotifs and only return the `id`
+     * const appointmentNotifWithIdOnly = await prisma.appointmentNotif.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AppointmentNotifCreateManyAndReturnArgs>(args?: SelectSubset<T, AppointmentNotifCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AppointmentNotif.
+     * @param {AppointmentNotifDeleteArgs} args - Arguments to delete one AppointmentNotif.
+     * @example
+     * // Delete one AppointmentNotif
+     * const AppointmentNotif = await prisma.appointmentNotif.delete({
+     *   where: {
+     *     // ... filter to delete one AppointmentNotif
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AppointmentNotifDeleteArgs>(args: SelectSubset<T, AppointmentNotifDeleteArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AppointmentNotif.
+     * @param {AppointmentNotifUpdateArgs} args - Arguments to update one AppointmentNotif.
+     * @example
+     * // Update one AppointmentNotif
+     * const appointmentNotif = await prisma.appointmentNotif.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AppointmentNotifUpdateArgs>(args: SelectSubset<T, AppointmentNotifUpdateArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AppointmentNotifs.
+     * @param {AppointmentNotifDeleteManyArgs} args - Arguments to filter AppointmentNotifs to delete.
+     * @example
+     * // Delete a few AppointmentNotifs
+     * const { count } = await prisma.appointmentNotif.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AppointmentNotifDeleteManyArgs>(args?: SelectSubset<T, AppointmentNotifDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppointmentNotifs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AppointmentNotifs
+     * const appointmentNotif = await prisma.appointmentNotif.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AppointmentNotifUpdateManyArgs>(args: SelectSubset<T, AppointmentNotifUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppointmentNotifs and returns the data updated in the database.
+     * @param {AppointmentNotifUpdateManyAndReturnArgs} args - Arguments to update many AppointmentNotifs.
+     * @example
+     * // Update many AppointmentNotifs
+     * const appointmentNotif = await prisma.appointmentNotif.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AppointmentNotifs and only return the `id`
+     * const appointmentNotifWithIdOnly = await prisma.appointmentNotif.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AppointmentNotifUpdateManyAndReturnArgs>(args: SelectSubset<T, AppointmentNotifUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AppointmentNotif.
+     * @param {AppointmentNotifUpsertArgs} args - Arguments to update or create a AppointmentNotif.
+     * @example
+     * // Update or create a AppointmentNotif
+     * const appointmentNotif = await prisma.appointmentNotif.upsert({
+     *   create: {
+     *     // ... data to create a AppointmentNotif
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AppointmentNotif we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AppointmentNotifUpsertArgs>(args: SelectSubset<T, AppointmentNotifUpsertArgs<ExtArgs>>): Prisma__AppointmentNotifClient<$Result.GetResult<Prisma.$AppointmentNotifPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AppointmentNotifs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifCountArgs} args - Arguments to filter AppointmentNotifs to count.
+     * @example
+     * // Count the number of AppointmentNotifs
+     * const count = await prisma.appointmentNotif.count({
+     *   where: {
+     *     // ... the filter for the AppointmentNotifs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AppointmentNotifCountArgs>(
+      args?: Subset<T, AppointmentNotifCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AppointmentNotifCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AppointmentNotif.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AppointmentNotifAggregateArgs>(args: Subset<T, AppointmentNotifAggregateArgs>): Prisma.PrismaPromise<GetAppointmentNotifAggregateType<T>>
+
+    /**
+     * Group by AppointmentNotif.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentNotifGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AppointmentNotifGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AppointmentNotifGroupByArgs['orderBy'] }
+        : { orderBy?: AppointmentNotifGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AppointmentNotifGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAppointmentNotifGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AppointmentNotif model
+   */
+  readonly fields: AppointmentNotifFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AppointmentNotif.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AppointmentNotifClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    appointment<T extends AppointmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AppointmentDefaultArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    receiver<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AppointmentNotif model
+   */
+  interface AppointmentNotifFieldRefs {
+    readonly id: FieldRef<"AppointmentNotif", 'String'>
+    readonly appoimentId: FieldRef<"AppointmentNotif", 'String'>
+    readonly receiverId: FieldRef<"AppointmentNotif", 'String'>
+    readonly title: FieldRef<"AppointmentNotif", 'String'>
+    readonly message: FieldRef<"AppointmentNotif", 'String'>
+    readonly isRead: FieldRef<"AppointmentNotif", 'Boolean'>
+    readonly createAt: FieldRef<"AppointmentNotif", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AppointmentNotif findUnique
+   */
+  export type AppointmentNotifFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentNotif to fetch.
+     */
+    where: AppointmentNotifWhereUniqueInput
+  }
+
+  /**
+   * AppointmentNotif findUniqueOrThrow
+   */
+  export type AppointmentNotifFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentNotif to fetch.
+     */
+    where: AppointmentNotifWhereUniqueInput
+  }
+
+  /**
+   * AppointmentNotif findFirst
+   */
+  export type AppointmentNotifFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentNotif to fetch.
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentNotifs to fetch.
+     */
+    orderBy?: AppointmentNotifOrderByWithRelationInput | AppointmentNotifOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppointmentNotifs.
+     */
+    cursor?: AppointmentNotifWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentNotifs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentNotifs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppointmentNotifs.
+     */
+    distinct?: AppointmentNotifScalarFieldEnum | AppointmentNotifScalarFieldEnum[]
+  }
+
+  /**
+   * AppointmentNotif findFirstOrThrow
+   */
+  export type AppointmentNotifFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentNotif to fetch.
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentNotifs to fetch.
+     */
+    orderBy?: AppointmentNotifOrderByWithRelationInput | AppointmentNotifOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppointmentNotifs.
+     */
+    cursor?: AppointmentNotifWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentNotifs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentNotifs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppointmentNotifs.
+     */
+    distinct?: AppointmentNotifScalarFieldEnum | AppointmentNotifScalarFieldEnum[]
+  }
+
+  /**
+   * AppointmentNotif findMany
+   */
+  export type AppointmentNotifFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentNotifs to fetch.
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentNotifs to fetch.
+     */
+    orderBy?: AppointmentNotifOrderByWithRelationInput | AppointmentNotifOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AppointmentNotifs.
+     */
+    cursor?: AppointmentNotifWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentNotifs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentNotifs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppointmentNotifs.
+     */
+    distinct?: AppointmentNotifScalarFieldEnum | AppointmentNotifScalarFieldEnum[]
+  }
+
+  /**
+   * AppointmentNotif create
+   */
+  export type AppointmentNotifCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AppointmentNotif.
+     */
+    data: XOR<AppointmentNotifCreateInput, AppointmentNotifUncheckedCreateInput>
+  }
+
+  /**
+   * AppointmentNotif createMany
+   */
+  export type AppointmentNotifCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AppointmentNotifs.
+     */
+    data: AppointmentNotifCreateManyInput | AppointmentNotifCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AppointmentNotif createManyAndReturn
+   */
+  export type AppointmentNotifCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * The data used to create many AppointmentNotifs.
+     */
+    data: AppointmentNotifCreateManyInput | AppointmentNotifCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AppointmentNotif update
+   */
+  export type AppointmentNotifUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AppointmentNotif.
+     */
+    data: XOR<AppointmentNotifUpdateInput, AppointmentNotifUncheckedUpdateInput>
+    /**
+     * Choose, which AppointmentNotif to update.
+     */
+    where: AppointmentNotifWhereUniqueInput
+  }
+
+  /**
+   * AppointmentNotif updateMany
+   */
+  export type AppointmentNotifUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AppointmentNotifs.
+     */
+    data: XOR<AppointmentNotifUpdateManyMutationInput, AppointmentNotifUncheckedUpdateManyInput>
+    /**
+     * Filter which AppointmentNotifs to update
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * Limit how many AppointmentNotifs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppointmentNotif updateManyAndReturn
+   */
+  export type AppointmentNotifUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * The data used to update AppointmentNotifs.
+     */
+    data: XOR<AppointmentNotifUpdateManyMutationInput, AppointmentNotifUncheckedUpdateManyInput>
+    /**
+     * Filter which AppointmentNotifs to update
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * Limit how many AppointmentNotifs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AppointmentNotif upsert
+   */
+  export type AppointmentNotifUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AppointmentNotif to update in case it exists.
+     */
+    where: AppointmentNotifWhereUniqueInput
+    /**
+     * In case the AppointmentNotif found by the `where` argument doesn't exist, create a new AppointmentNotif with this data.
+     */
+    create: XOR<AppointmentNotifCreateInput, AppointmentNotifUncheckedCreateInput>
+    /**
+     * In case the AppointmentNotif was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AppointmentNotifUpdateInput, AppointmentNotifUncheckedUpdateInput>
+  }
+
+  /**
+   * AppointmentNotif delete
+   */
+  export type AppointmentNotifDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
+    /**
+     * Filter which AppointmentNotif to delete.
+     */
+    where: AppointmentNotifWhereUniqueInput
+  }
+
+  /**
+   * AppointmentNotif deleteMany
+   */
+  export type AppointmentNotifDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppointmentNotifs to delete
+     */
+    where?: AppointmentNotifWhereInput
+    /**
+     * Limit how many AppointmentNotifs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppointmentNotif without action
+   */
+  export type AppointmentNotifDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentNotif
+     */
+    select?: AppointmentNotifSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentNotif
+     */
+    omit?: AppointmentNotifOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentNotifInclude<ExtArgs> | null
   }
 
 
@@ -23537,16 +24849,31 @@ export namespace Prisma {
 
   export const AppointmentScalarFieldEnum: {
     id: 'id',
+    name: 'name',
+    phoneNumber: 'phoneNumber',
     userId: 'userId',
     storeId: 'storeId',
     Date: 'Date',
-    startTime: 'startTime',
-    endTime: 'endTime',
+    selectTime: 'selectTime',
+    UserPhoto: 'UserPhoto',
     status: 'status',
     createdat: 'createdat'
   };
 
   export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
+
+
+  export const AppointmentNotifScalarFieldEnum: {
+    id: 'id',
+    appoimentId: 'appoimentId',
+    receiverId: 'receiverId',
+    title: 'title',
+    message: 'message',
+    isRead: 'isRead',
+    createAt: 'createAt'
+  };
+
+  export type AppointmentNotifScalarFieldEnum = (typeof AppointmentNotifScalarFieldEnum)[keyof typeof AppointmentNotifScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -23723,6 +25050,7 @@ export namespace Prisma {
     Agreement?: AgreementListRelationFilter
     TourNotification?: TourNotificationListRelationFilter
     Appointment?: AppointmentListRelationFilter
+    AppointmentNotfic?: AppointmentNotifListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -23743,6 +25071,7 @@ export namespace Prisma {
     Agreement?: AgreementOrderByRelationAggregateInput
     TourNotification?: TourNotificationOrderByRelationAggregateInput
     Appointment?: AppointmentOrderByRelationAggregateInput
+    AppointmentNotfic?: AppointmentNotifOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -23766,6 +25095,7 @@ export namespace Prisma {
     Agreement?: AgreementListRelationFilter
     TourNotification?: TourNotificationListRelationFilter
     Appointment?: AppointmentListRelationFilter
+    AppointmentNotfic?: AppointmentNotifListRelationFilter
   }, "id" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -25080,28 +26410,34 @@ export namespace Prisma {
     OR?: AppointmentWhereInput[]
     NOT?: AppointmentWhereInput | AppointmentWhereInput[]
     id?: StringFilter<"Appointment"> | string
+    name?: StringFilter<"Appointment"> | string
+    phoneNumber?: StringFilter<"Appointment"> | string
     userId?: StringFilter<"Appointment"> | string
     storeId?: StringFilter<"Appointment"> | string
     Date?: DateTimeFilter<"Appointment"> | Date | string
-    startTime?: DateTimeFilter<"Appointment"> | Date | string
-    endTime?: DateTimeFilter<"Appointment"> | Date | string
+    selectTime?: StringFilter<"Appointment"> | string
+    UserPhoto?: StringFilter<"Appointment"> | string
     status?: EnumAppointmentStatusFilter<"Appointment"> | $Enums.AppointmentStatus
     createdat?: DateTimeFilter<"Appointment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
+    notification?: AppointmentNotifListRelationFilter
   }
 
   export type AppointmentOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
+    phoneNumber?: SortOrder
     userId?: SortOrder
     storeId?: SortOrder
     Date?: SortOrder
-    startTime?: SortOrder
-    endTime?: SortOrder
+    selectTime?: SortOrder
+    UserPhoto?: SortOrder
     status?: SortOrder
     createdat?: SortOrder
     user?: UserOrderByWithRelationInput
     store?: StoreOrderByWithRelationInput
+    notification?: AppointmentNotifOrderByRelationAggregateInput
   }
 
   export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
@@ -25109,24 +26445,29 @@ export namespace Prisma {
     AND?: AppointmentWhereInput | AppointmentWhereInput[]
     OR?: AppointmentWhereInput[]
     NOT?: AppointmentWhereInput | AppointmentWhereInput[]
+    name?: StringFilter<"Appointment"> | string
+    phoneNumber?: StringFilter<"Appointment"> | string
     userId?: StringFilter<"Appointment"> | string
     storeId?: StringFilter<"Appointment"> | string
     Date?: DateTimeFilter<"Appointment"> | Date | string
-    startTime?: DateTimeFilter<"Appointment"> | Date | string
-    endTime?: DateTimeFilter<"Appointment"> | Date | string
+    selectTime?: StringFilter<"Appointment"> | string
+    UserPhoto?: StringFilter<"Appointment"> | string
     status?: EnumAppointmentStatusFilter<"Appointment"> | $Enums.AppointmentStatus
     createdat?: DateTimeFilter<"Appointment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
+    notification?: AppointmentNotifListRelationFilter
   }, "id">
 
   export type AppointmentOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
+    phoneNumber?: SortOrder
     userId?: SortOrder
     storeId?: SortOrder
     Date?: SortOrder
-    startTime?: SortOrder
-    endTime?: SortOrder
+    selectTime?: SortOrder
+    UserPhoto?: SortOrder
     status?: SortOrder
     createdat?: SortOrder
     _count?: AppointmentCountOrderByAggregateInput
@@ -25139,13 +26480,83 @@ export namespace Prisma {
     OR?: AppointmentScalarWhereWithAggregatesInput[]
     NOT?: AppointmentScalarWhereWithAggregatesInput | AppointmentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Appointment"> | string
+    name?: StringWithAggregatesFilter<"Appointment"> | string
+    phoneNumber?: StringWithAggregatesFilter<"Appointment"> | string
     userId?: StringWithAggregatesFilter<"Appointment"> | string
     storeId?: StringWithAggregatesFilter<"Appointment"> | string
     Date?: DateTimeWithAggregatesFilter<"Appointment"> | Date | string
-    startTime?: DateTimeWithAggregatesFilter<"Appointment"> | Date | string
-    endTime?: DateTimeWithAggregatesFilter<"Appointment"> | Date | string
+    selectTime?: StringWithAggregatesFilter<"Appointment"> | string
+    UserPhoto?: StringWithAggregatesFilter<"Appointment"> | string
     status?: EnumAppointmentStatusWithAggregatesFilter<"Appointment"> | $Enums.AppointmentStatus
     createdat?: DateTimeWithAggregatesFilter<"Appointment"> | Date | string
+  }
+
+  export type AppointmentNotifWhereInput = {
+    AND?: AppointmentNotifWhereInput | AppointmentNotifWhereInput[]
+    OR?: AppointmentNotifWhereInput[]
+    NOT?: AppointmentNotifWhereInput | AppointmentNotifWhereInput[]
+    id?: StringFilter<"AppointmentNotif"> | string
+    appoimentId?: StringFilter<"AppointmentNotif"> | string
+    receiverId?: StringFilter<"AppointmentNotif"> | string
+    title?: StringFilter<"AppointmentNotif"> | string
+    message?: StringFilter<"AppointmentNotif"> | string
+    isRead?: BoolFilter<"AppointmentNotif"> | boolean
+    createAt?: DateTimeFilter<"AppointmentNotif"> | Date | string
+    appointment?: XOR<AppointmentScalarRelationFilter, AppointmentWhereInput>
+    receiver?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type AppointmentNotifOrderByWithRelationInput = {
+    id?: SortOrder
+    appoimentId?: SortOrder
+    receiverId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createAt?: SortOrder
+    appointment?: AppointmentOrderByWithRelationInput
+    receiver?: UserOrderByWithRelationInput
+  }
+
+  export type AppointmentNotifWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AppointmentNotifWhereInput | AppointmentNotifWhereInput[]
+    OR?: AppointmentNotifWhereInput[]
+    NOT?: AppointmentNotifWhereInput | AppointmentNotifWhereInput[]
+    appoimentId?: StringFilter<"AppointmentNotif"> | string
+    receiverId?: StringFilter<"AppointmentNotif"> | string
+    title?: StringFilter<"AppointmentNotif"> | string
+    message?: StringFilter<"AppointmentNotif"> | string
+    isRead?: BoolFilter<"AppointmentNotif"> | boolean
+    createAt?: DateTimeFilter<"AppointmentNotif"> | Date | string
+    appointment?: XOR<AppointmentScalarRelationFilter, AppointmentWhereInput>
+    receiver?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type AppointmentNotifOrderByWithAggregationInput = {
+    id?: SortOrder
+    appoimentId?: SortOrder
+    receiverId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createAt?: SortOrder
+    _count?: AppointmentNotifCountOrderByAggregateInput
+    _max?: AppointmentNotifMaxOrderByAggregateInput
+    _min?: AppointmentNotifMinOrderByAggregateInput
+  }
+
+  export type AppointmentNotifScalarWhereWithAggregatesInput = {
+    AND?: AppointmentNotifScalarWhereWithAggregatesInput | AppointmentNotifScalarWhereWithAggregatesInput[]
+    OR?: AppointmentNotifScalarWhereWithAggregatesInput[]
+    NOT?: AppointmentNotifScalarWhereWithAggregatesInput | AppointmentNotifScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AppointmentNotif"> | string
+    appoimentId?: StringWithAggregatesFilter<"AppointmentNotif"> | string
+    receiverId?: StringWithAggregatesFilter<"AppointmentNotif"> | string
+    title?: StringWithAggregatesFilter<"AppointmentNotif"> | string
+    message?: StringWithAggregatesFilter<"AppointmentNotif"> | string
+    isRead?: BoolWithAggregatesFilter<"AppointmentNotif"> | boolean
+    createAt?: DateTimeWithAggregatesFilter<"AppointmentNotif"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -25166,6 +26577,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -25186,6 +26598,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUpdateInput = {
@@ -25206,6 +26619,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -25226,6 +26640,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -26683,77 +28098,163 @@ export namespace Prisma {
 
   export type AppointmentCreateInput = {
     id?: string
+    name: string
+    phoneNumber: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
     user: UserCreateNestedOneWithoutAppointmentInput
     store: StoreCreateNestedOneWithoutAppointmentInput
+    notification?: AppointmentNotifCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateInput = {
     id?: string
+    name: string
+    phoneNumber: string
     userId: string
     storeId: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
+    notification?: AppointmentNotifUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAppointmentNestedInput
     store?: StoreUpdateOneRequiredWithoutAppointmentNestedInput
+    notification?: AppointmentNotifUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     storeId?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+    notification?: AppointmentNotifUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentCreateManyInput = {
     id?: string
+    name: string
+    phoneNumber: string
     userId: string
     storeId: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
   }
 
   export type AppointmentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AppointmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     storeId?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifCreateInput = {
+    id?: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+    appointment: AppointmentCreateNestedOneWithoutNotificationInput
+    receiver: UserCreateNestedOneWithoutAppointmentNotficInput
+  }
+
+  export type AppointmentNotifUncheckedCreateInput = {
+    id?: string
+    appoimentId: string
+    receiverId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+  }
+
+  export type AppointmentNotifUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    appointment?: AppointmentUpdateOneRequiredWithoutNotificationNestedInput
+    receiver?: UserUpdateOneRequiredWithoutAppointmentNotficNestedInput
+  }
+
+  export type AppointmentNotifUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    appoimentId?: StringFieldUpdateOperationsInput | string
+    receiverId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifCreateManyInput = {
+    id?: string
+    appoimentId: string
+    receiverId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+  }
+
+  export type AppointmentNotifUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    appoimentId?: StringFieldUpdateOperationsInput | string
+    receiverId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -26856,6 +28357,12 @@ export namespace Prisma {
     none?: AppointmentWhereInput
   }
 
+  export type AppointmentNotifListRelationFilter = {
+    every?: AppointmentNotifWhereInput
+    some?: AppointmentNotifWhereInput
+    none?: AppointmentNotifWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -26894,6 +28401,10 @@ export namespace Prisma {
   }
 
   export type AppointmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AppointmentNotifOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27864,33 +29375,39 @@ export namespace Prisma {
 
   export type AppointmentCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    phoneNumber?: SortOrder
     userId?: SortOrder
     storeId?: SortOrder
     Date?: SortOrder
-    startTime?: SortOrder
-    endTime?: SortOrder
+    selectTime?: SortOrder
+    UserPhoto?: SortOrder
     status?: SortOrder
     createdat?: SortOrder
   }
 
   export type AppointmentMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    phoneNumber?: SortOrder
     userId?: SortOrder
     storeId?: SortOrder
     Date?: SortOrder
-    startTime?: SortOrder
-    endTime?: SortOrder
+    selectTime?: SortOrder
+    UserPhoto?: SortOrder
     status?: SortOrder
     createdat?: SortOrder
   }
 
   export type AppointmentMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    phoneNumber?: SortOrder
     userId?: SortOrder
     storeId?: SortOrder
     Date?: SortOrder
-    startTime?: SortOrder
-    endTime?: SortOrder
+    selectTime?: SortOrder
+    UserPhoto?: SortOrder
     status?: SortOrder
     createdat?: SortOrder
   }
@@ -27903,6 +29420,41 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAppointmentStatusFilter<$PrismaModel>
     _max?: NestedEnumAppointmentStatusFilter<$PrismaModel>
+  }
+
+  export type AppointmentScalarRelationFilter = {
+    is?: AppointmentWhereInput
+    isNot?: AppointmentWhereInput
+  }
+
+  export type AppointmentNotifCountOrderByAggregateInput = {
+    id?: SortOrder
+    appoimentId?: SortOrder
+    receiverId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createAt?: SortOrder
+  }
+
+  export type AppointmentNotifMaxOrderByAggregateInput = {
+    id?: SortOrder
+    appoimentId?: SortOrder
+    receiverId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createAt?: SortOrder
+  }
+
+  export type AppointmentNotifMinOrderByAggregateInput = {
+    id?: SortOrder
+    appoimentId?: SortOrder
+    receiverId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    isRead?: SortOrder
+    createAt?: SortOrder
   }
 
   export type StoreCreateNestedManyWithoutOwnerInput = {
@@ -27968,6 +29520,13 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
+  export type AppointmentNotifCreateNestedManyWithoutReceiverInput = {
+    create?: XOR<AppointmentNotifCreateWithoutReceiverInput, AppointmentNotifUncheckedCreateWithoutReceiverInput> | AppointmentNotifCreateWithoutReceiverInput[] | AppointmentNotifUncheckedCreateWithoutReceiverInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutReceiverInput | AppointmentNotifCreateOrConnectWithoutReceiverInput[]
+    createMany?: AppointmentNotifCreateManyReceiverInputEnvelope
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+  }
+
   export type StoreUncheckedCreateNestedManyWithoutOwnerInput = {
     create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput> | StoreCreateWithoutOwnerInput[] | StoreUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput | StoreCreateOrConnectWithoutOwnerInput[]
@@ -28029,6 +29588,13 @@ export namespace Prisma {
     connectOrCreate?: AppointmentCreateOrConnectWithoutUserInput | AppointmentCreateOrConnectWithoutUserInput[]
     createMany?: AppointmentCreateManyUserInputEnvelope
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
+  }
+
+  export type AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput = {
+    create?: XOR<AppointmentNotifCreateWithoutReceiverInput, AppointmentNotifUncheckedCreateWithoutReceiverInput> | AppointmentNotifCreateWithoutReceiverInput[] | AppointmentNotifUncheckedCreateWithoutReceiverInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutReceiverInput | AppointmentNotifCreateOrConnectWithoutReceiverInput[]
+    createMany?: AppointmentNotifCreateManyReceiverInputEnvelope
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -28173,6 +29739,20 @@ export namespace Prisma {
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
   }
 
+  export type AppointmentNotifUpdateManyWithoutReceiverNestedInput = {
+    create?: XOR<AppointmentNotifCreateWithoutReceiverInput, AppointmentNotifUncheckedCreateWithoutReceiverInput> | AppointmentNotifCreateWithoutReceiverInput[] | AppointmentNotifUncheckedCreateWithoutReceiverInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutReceiverInput | AppointmentNotifCreateOrConnectWithoutReceiverInput[]
+    upsert?: AppointmentNotifUpsertWithWhereUniqueWithoutReceiverInput | AppointmentNotifUpsertWithWhereUniqueWithoutReceiverInput[]
+    createMany?: AppointmentNotifCreateManyReceiverInputEnvelope
+    set?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    disconnect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    delete?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    update?: AppointmentNotifUpdateWithWhereUniqueWithoutReceiverInput | AppointmentNotifUpdateWithWhereUniqueWithoutReceiverInput[]
+    updateMany?: AppointmentNotifUpdateManyWithWhereWithoutReceiverInput | AppointmentNotifUpdateManyWithWhereWithoutReceiverInput[]
+    deleteMany?: AppointmentNotifScalarWhereInput | AppointmentNotifScalarWhereInput[]
+  }
+
   export type StoreUncheckedUpdateManyWithoutOwnerNestedInput = {
     create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput> | StoreCreateWithoutOwnerInput[] | StoreUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput | StoreCreateOrConnectWithoutOwnerInput[]
@@ -28297,6 +29877,20 @@ export namespace Prisma {
     update?: AppointmentUpdateWithWhereUniqueWithoutUserInput | AppointmentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AppointmentUpdateManyWithWhereWithoutUserInput | AppointmentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
+  }
+
+  export type AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput = {
+    create?: XOR<AppointmentNotifCreateWithoutReceiverInput, AppointmentNotifUncheckedCreateWithoutReceiverInput> | AppointmentNotifCreateWithoutReceiverInput[] | AppointmentNotifUncheckedCreateWithoutReceiverInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutReceiverInput | AppointmentNotifCreateOrConnectWithoutReceiverInput[]
+    upsert?: AppointmentNotifUpsertWithWhereUniqueWithoutReceiverInput | AppointmentNotifUpsertWithWhereUniqueWithoutReceiverInput[]
+    createMany?: AppointmentNotifCreateManyReceiverInputEnvelope
+    set?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    disconnect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    delete?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    update?: AppointmentNotifUpdateWithWhereUniqueWithoutReceiverInput | AppointmentNotifUpdateWithWhereUniqueWithoutReceiverInput[]
+    updateMany?: AppointmentNotifUpdateManyWithWhereWithoutReceiverInput | AppointmentNotifUpdateManyWithWhereWithoutReceiverInput[]
+    deleteMany?: AppointmentNotifScalarWhereInput | AppointmentNotifScalarWhereInput[]
   }
 
   export type StoreCreatedaysInput = {
@@ -28974,6 +30568,20 @@ export namespace Prisma {
     connect?: StoreWhereUniqueInput
   }
 
+  export type AppointmentNotifCreateNestedManyWithoutAppointmentInput = {
+    create?: XOR<AppointmentNotifCreateWithoutAppointmentInput, AppointmentNotifUncheckedCreateWithoutAppointmentInput> | AppointmentNotifCreateWithoutAppointmentInput[] | AppointmentNotifUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutAppointmentInput | AppointmentNotifCreateOrConnectWithoutAppointmentInput[]
+    createMany?: AppointmentNotifCreateManyAppointmentInputEnvelope
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+  }
+
+  export type AppointmentNotifUncheckedCreateNestedManyWithoutAppointmentInput = {
+    create?: XOR<AppointmentNotifCreateWithoutAppointmentInput, AppointmentNotifUncheckedCreateWithoutAppointmentInput> | AppointmentNotifCreateWithoutAppointmentInput[] | AppointmentNotifUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutAppointmentInput | AppointmentNotifCreateOrConnectWithoutAppointmentInput[]
+    createMany?: AppointmentNotifCreateManyAppointmentInputEnvelope
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+  }
+
   export type EnumAppointmentStatusFieldUpdateOperationsInput = {
     set?: $Enums.AppointmentStatus
   }
@@ -28992,6 +30600,62 @@ export namespace Prisma {
     upsert?: StoreUpsertWithoutAppointmentInput
     connect?: StoreWhereUniqueInput
     update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutAppointmentInput, StoreUpdateWithoutAppointmentInput>, StoreUncheckedUpdateWithoutAppointmentInput>
+  }
+
+  export type AppointmentNotifUpdateManyWithoutAppointmentNestedInput = {
+    create?: XOR<AppointmentNotifCreateWithoutAppointmentInput, AppointmentNotifUncheckedCreateWithoutAppointmentInput> | AppointmentNotifCreateWithoutAppointmentInput[] | AppointmentNotifUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutAppointmentInput | AppointmentNotifCreateOrConnectWithoutAppointmentInput[]
+    upsert?: AppointmentNotifUpsertWithWhereUniqueWithoutAppointmentInput | AppointmentNotifUpsertWithWhereUniqueWithoutAppointmentInput[]
+    createMany?: AppointmentNotifCreateManyAppointmentInputEnvelope
+    set?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    disconnect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    delete?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    update?: AppointmentNotifUpdateWithWhereUniqueWithoutAppointmentInput | AppointmentNotifUpdateWithWhereUniqueWithoutAppointmentInput[]
+    updateMany?: AppointmentNotifUpdateManyWithWhereWithoutAppointmentInput | AppointmentNotifUpdateManyWithWhereWithoutAppointmentInput[]
+    deleteMany?: AppointmentNotifScalarWhereInput | AppointmentNotifScalarWhereInput[]
+  }
+
+  export type AppointmentNotifUncheckedUpdateManyWithoutAppointmentNestedInput = {
+    create?: XOR<AppointmentNotifCreateWithoutAppointmentInput, AppointmentNotifUncheckedCreateWithoutAppointmentInput> | AppointmentNotifCreateWithoutAppointmentInput[] | AppointmentNotifUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentNotifCreateOrConnectWithoutAppointmentInput | AppointmentNotifCreateOrConnectWithoutAppointmentInput[]
+    upsert?: AppointmentNotifUpsertWithWhereUniqueWithoutAppointmentInput | AppointmentNotifUpsertWithWhereUniqueWithoutAppointmentInput[]
+    createMany?: AppointmentNotifCreateManyAppointmentInputEnvelope
+    set?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    disconnect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    delete?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    connect?: AppointmentNotifWhereUniqueInput | AppointmentNotifWhereUniqueInput[]
+    update?: AppointmentNotifUpdateWithWhereUniqueWithoutAppointmentInput | AppointmentNotifUpdateWithWhereUniqueWithoutAppointmentInput[]
+    updateMany?: AppointmentNotifUpdateManyWithWhereWithoutAppointmentInput | AppointmentNotifUpdateManyWithWhereWithoutAppointmentInput[]
+    deleteMany?: AppointmentNotifScalarWhereInput | AppointmentNotifScalarWhereInput[]
+  }
+
+  export type AppointmentCreateNestedOneWithoutNotificationInput = {
+    create?: XOR<AppointmentCreateWithoutNotificationInput, AppointmentUncheckedCreateWithoutNotificationInput>
+    connectOrCreate?: AppointmentCreateOrConnectWithoutNotificationInput
+    connect?: AppointmentWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutAppointmentNotficInput = {
+    create?: XOR<UserCreateWithoutAppointmentNotficInput, UserUncheckedCreateWithoutAppointmentNotficInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAppointmentNotficInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type AppointmentUpdateOneRequiredWithoutNotificationNestedInput = {
+    create?: XOR<AppointmentCreateWithoutNotificationInput, AppointmentUncheckedCreateWithoutNotificationInput>
+    connectOrCreate?: AppointmentCreateOrConnectWithoutNotificationInput
+    upsert?: AppointmentUpsertWithoutNotificationInput
+    connect?: AppointmentWhereUniqueInput
+    update?: XOR<XOR<AppointmentUpdateToOneWithWhereWithoutNotificationInput, AppointmentUpdateWithoutNotificationInput>, AppointmentUncheckedUpdateWithoutNotificationInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutAppointmentNotficNestedInput = {
+    create?: XOR<UserCreateWithoutAppointmentNotficInput, UserUncheckedCreateWithoutAppointmentNotficInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAppointmentNotficInput
+    upsert?: UserUpsertWithoutAppointmentNotficInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAppointmentNotficInput, UserUpdateWithoutAppointmentNotficInput>, UserUncheckedUpdateWithoutAppointmentNotficInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -29550,22 +31214,28 @@ export namespace Prisma {
 
   export type AppointmentCreateWithoutUserInput = {
     id?: string
+    name: string
+    phoneNumber: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
     store: StoreCreateNestedOneWithoutAppointmentInput
+    notification?: AppointmentNotifCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutUserInput = {
     id?: string
+    name: string
+    phoneNumber: string
     storeId: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
+    notification?: AppointmentNotifUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutUserInput = {
@@ -29575,6 +31245,34 @@ export namespace Prisma {
 
   export type AppointmentCreateManyUserInputEnvelope = {
     data: AppointmentCreateManyUserInput | AppointmentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AppointmentNotifCreateWithoutReceiverInput = {
+    id?: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+    appointment: AppointmentCreateNestedOneWithoutNotificationInput
+  }
+
+  export type AppointmentNotifUncheckedCreateWithoutReceiverInput = {
+    id?: string
+    appoimentId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+  }
+
+  export type AppointmentNotifCreateOrConnectWithoutReceiverInput = {
+    where: AppointmentNotifWhereUniqueInput
+    create: XOR<AppointmentNotifCreateWithoutReceiverInput, AppointmentNotifUncheckedCreateWithoutReceiverInput>
+  }
+
+  export type AppointmentNotifCreateManyReceiverInputEnvelope = {
+    data: AppointmentNotifCreateManyReceiverInput | AppointmentNotifCreateManyReceiverInput[]
     skipDuplicates?: boolean
   }
 
@@ -29857,13 +31555,44 @@ export namespace Prisma {
     OR?: AppointmentScalarWhereInput[]
     NOT?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
     id?: StringFilter<"Appointment"> | string
+    name?: StringFilter<"Appointment"> | string
+    phoneNumber?: StringFilter<"Appointment"> | string
     userId?: StringFilter<"Appointment"> | string
     storeId?: StringFilter<"Appointment"> | string
     Date?: DateTimeFilter<"Appointment"> | Date | string
-    startTime?: DateTimeFilter<"Appointment"> | Date | string
-    endTime?: DateTimeFilter<"Appointment"> | Date | string
+    selectTime?: StringFilter<"Appointment"> | string
+    UserPhoto?: StringFilter<"Appointment"> | string
     status?: EnumAppointmentStatusFilter<"Appointment"> | $Enums.AppointmentStatus
     createdat?: DateTimeFilter<"Appointment"> | Date | string
+  }
+
+  export type AppointmentNotifUpsertWithWhereUniqueWithoutReceiverInput = {
+    where: AppointmentNotifWhereUniqueInput
+    update: XOR<AppointmentNotifUpdateWithoutReceiverInput, AppointmentNotifUncheckedUpdateWithoutReceiverInput>
+    create: XOR<AppointmentNotifCreateWithoutReceiverInput, AppointmentNotifUncheckedCreateWithoutReceiverInput>
+  }
+
+  export type AppointmentNotifUpdateWithWhereUniqueWithoutReceiverInput = {
+    where: AppointmentNotifWhereUniqueInput
+    data: XOR<AppointmentNotifUpdateWithoutReceiverInput, AppointmentNotifUncheckedUpdateWithoutReceiverInput>
+  }
+
+  export type AppointmentNotifUpdateManyWithWhereWithoutReceiverInput = {
+    where: AppointmentNotifScalarWhereInput
+    data: XOR<AppointmentNotifUpdateManyMutationInput, AppointmentNotifUncheckedUpdateManyWithoutReceiverInput>
+  }
+
+  export type AppointmentNotifScalarWhereInput = {
+    AND?: AppointmentNotifScalarWhereInput | AppointmentNotifScalarWhereInput[]
+    OR?: AppointmentNotifScalarWhereInput[]
+    NOT?: AppointmentNotifScalarWhereInput | AppointmentNotifScalarWhereInput[]
+    id?: StringFilter<"AppointmentNotif"> | string
+    appoimentId?: StringFilter<"AppointmentNotif"> | string
+    receiverId?: StringFilter<"AppointmentNotif"> | string
+    title?: StringFilter<"AppointmentNotif"> | string
+    message?: StringFilter<"AppointmentNotif"> | string
+    isRead?: BoolFilter<"AppointmentNotif"> | boolean
+    createAt?: DateTimeFilter<"AppointmentNotif"> | Date | string
   }
 
   export type UserCreateWithoutStoresInput = {
@@ -29883,6 +31612,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutStoresInput = {
@@ -29902,6 +31632,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutStoresInput = {
@@ -30043,22 +31774,28 @@ export namespace Prisma {
 
   export type AppointmentCreateWithoutStoreInput = {
     id?: string
+    name: string
+    phoneNumber: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
     user: UserCreateNestedOneWithoutAppointmentInput
+    notification?: AppointmentNotifCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutStoreInput = {
     id?: string
+    name: string
+    phoneNumber: string
     userId: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
+    notification?: AppointmentNotifUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutStoreInput = {
@@ -30099,6 +31836,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStoresInput = {
@@ -30118,6 +31856,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type StoreImageUpsertWithWhereUniqueWithoutStoreInput = {
@@ -30583,6 +32322,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutLikedStoresInput = {
@@ -30602,6 +32342,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutLikedStoresInput = {
@@ -30716,6 +32457,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLikedStoresInput = {
@@ -30735,6 +32477,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type StoreUpsertWithoutLikesInput = {
@@ -30918,6 +32661,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutBuyerInput = {
@@ -30937,6 +32681,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutBuyerInput = {
@@ -31129,6 +32874,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBuyerInput = {
@@ -31148,6 +32894,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type MessageUpsertWithWhereUniqueWithoutConversationInput = {
@@ -31240,6 +32987,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -31259,6 +33007,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -31325,6 +33074,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -31344,6 +33094,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserCreateWithoutNotificationInput = {
@@ -31363,6 +33114,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutNotificationInput = {
@@ -31382,6 +33134,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutNotificationInput = {
@@ -31442,6 +33195,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationInput = {
@@ -31461,6 +33215,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type ConversationUpsertWithoutNotificationInput = {
@@ -31511,6 +33266,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceCreateNestedManyWithoutUserInput
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutTourNotificationInput = {
@@ -31530,6 +33286,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUncheckedCreateNestedManyWithoutUserInput
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutTourNotificationInput = {
@@ -31565,6 +33322,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUpdateManyWithoutUserNestedInput
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTourNotificationInput = {
@@ -31584,6 +33342,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUncheckedUpdateManyWithoutUserNestedInput
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserCreateWithoutUserPresenceInput = {
@@ -31603,6 +33362,7 @@ export namespace Prisma {
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutUserPresenceInput = {
@@ -31622,6 +33382,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutUserPresenceInput = {
@@ -31682,6 +33443,7 @@ export namespace Prisma {
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserPresenceInput = {
@@ -31701,6 +33463,7 @@ export namespace Prisma {
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type ConversationUpsertWithoutUserPresenceInput = {
@@ -31751,6 +33514,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
     Appointment?: AppointmentCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutAgreementInput = {
@@ -31770,6 +33534,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
     Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutAgreementInput = {
@@ -31884,6 +33649,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAgreementInput = {
@@ -31903,6 +33669,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
     Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type StoreUpsertWithoutAgreementInput = {
@@ -32007,6 +33774,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceCreateNestedManyWithoutUserInput
     Agreement?: AgreementCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifCreateNestedManyWithoutReceiverInput
   }
 
   export type UserUncheckedCreateWithoutAppointmentInput = {
@@ -32026,6 +33794,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUncheckedCreateNestedManyWithoutUserInput
     Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
     TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
+    AppointmentNotfic?: AppointmentNotifUncheckedCreateNestedManyWithoutReceiverInput
   }
 
   export type UserCreateOrConnectWithoutAppointmentInput = {
@@ -32112,6 +33881,34 @@ export namespace Prisma {
     create: XOR<StoreCreateWithoutAppointmentInput, StoreUncheckedCreateWithoutAppointmentInput>
   }
 
+  export type AppointmentNotifCreateWithoutAppointmentInput = {
+    id?: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+    receiver: UserCreateNestedOneWithoutAppointmentNotficInput
+  }
+
+  export type AppointmentNotifUncheckedCreateWithoutAppointmentInput = {
+    id?: string
+    receiverId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+  }
+
+  export type AppointmentNotifCreateOrConnectWithoutAppointmentInput = {
+    where: AppointmentNotifWhereUniqueInput
+    create: XOR<AppointmentNotifCreateWithoutAppointmentInput, AppointmentNotifUncheckedCreateWithoutAppointmentInput>
+  }
+
+  export type AppointmentNotifCreateManyAppointmentInputEnvelope = {
+    data: AppointmentNotifCreateManyAppointmentInput | AppointmentNotifCreateManyAppointmentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutAppointmentInput = {
     update: XOR<UserUpdateWithoutAppointmentInput, UserUncheckedUpdateWithoutAppointmentInput>
     create: XOR<UserCreateWithoutAppointmentInput, UserUncheckedCreateWithoutAppointmentInput>
@@ -32140,6 +33937,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUpdateManyWithoutUserNestedInput
     Agreement?: AgreementUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUpdateManyWithoutReceiverNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAppointmentInput = {
@@ -32159,6 +33957,7 @@ export namespace Prisma {
     UserPresence?: UserPresenceUncheckedUpdateManyWithoutUserNestedInput
     Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
     TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
+    AppointmentNotfic?: AppointmentNotifUncheckedUpdateManyWithoutReceiverNestedInput
   }
 
   export type StoreUpsertWithoutAppointmentInput = {
@@ -32244,6 +34043,186 @@ export namespace Prisma {
     likes?: StoreLikeUncheckedUpdateManyWithoutStoreNestedInput
     store?: ConversationUncheckedUpdateManyWithoutStoreNestedInput
     Agreement?: AgreementUncheckedUpdateManyWithoutStoreNestedInput
+  }
+
+  export type AppointmentNotifUpsertWithWhereUniqueWithoutAppointmentInput = {
+    where: AppointmentNotifWhereUniqueInput
+    update: XOR<AppointmentNotifUpdateWithoutAppointmentInput, AppointmentNotifUncheckedUpdateWithoutAppointmentInput>
+    create: XOR<AppointmentNotifCreateWithoutAppointmentInput, AppointmentNotifUncheckedCreateWithoutAppointmentInput>
+  }
+
+  export type AppointmentNotifUpdateWithWhereUniqueWithoutAppointmentInput = {
+    where: AppointmentNotifWhereUniqueInput
+    data: XOR<AppointmentNotifUpdateWithoutAppointmentInput, AppointmentNotifUncheckedUpdateWithoutAppointmentInput>
+  }
+
+  export type AppointmentNotifUpdateManyWithWhereWithoutAppointmentInput = {
+    where: AppointmentNotifScalarWhereInput
+    data: XOR<AppointmentNotifUpdateManyMutationInput, AppointmentNotifUncheckedUpdateManyWithoutAppointmentInput>
+  }
+
+  export type AppointmentCreateWithoutNotificationInput = {
+    id?: string
+    name: string
+    phoneNumber: string
+    Date?: Date | string
+    selectTime: string
+    UserPhoto: string
+    status?: $Enums.AppointmentStatus
+    createdat?: Date | string
+    user: UserCreateNestedOneWithoutAppointmentInput
+    store: StoreCreateNestedOneWithoutAppointmentInput
+  }
+
+  export type AppointmentUncheckedCreateWithoutNotificationInput = {
+    id?: string
+    name: string
+    phoneNumber: string
+    userId: string
+    storeId: string
+    Date?: Date | string
+    selectTime: string
+    UserPhoto: string
+    status?: $Enums.AppointmentStatus
+    createdat?: Date | string
+  }
+
+  export type AppointmentCreateOrConnectWithoutNotificationInput = {
+    where: AppointmentWhereUniqueInput
+    create: XOR<AppointmentCreateWithoutNotificationInput, AppointmentUncheckedCreateWithoutNotificationInput>
+  }
+
+  export type UserCreateWithoutAppointmentNotficInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    image?: string | null
+    phone?: string | null
+    phoneVerified?: boolean
+    createdAt?: Date | string
+    userBussinessType?: string | null
+    stores?: StoreCreateNestedManyWithoutOwnerInput
+    likedStores?: StoreLikeCreateNestedManyWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutSenderInput
+    buyer?: ConversationCreateNestedManyWithoutBuyerInput
+    UserPresence?: UserPresenceCreateNestedManyWithoutUserInput
+    Agreement?: AgreementCreateNestedManyWithoutUserInput
+    TourNotification?: TourNotificationCreateNestedManyWithoutUserInput
+    Appointment?: AppointmentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAppointmentNotficInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    image?: string | null
+    phone?: string | null
+    phoneVerified?: boolean
+    createdAt?: Date | string
+    userBussinessType?: string | null
+    stores?: StoreUncheckedCreateNestedManyWithoutOwnerInput
+    likedStores?: StoreLikeUncheckedCreateNestedManyWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    buyer?: ConversationUncheckedCreateNestedManyWithoutBuyerInput
+    UserPresence?: UserPresenceUncheckedCreateNestedManyWithoutUserInput
+    Agreement?: AgreementUncheckedCreateNestedManyWithoutUserInput
+    TourNotification?: TourNotificationUncheckedCreateNestedManyWithoutUserInput
+    Appointment?: AppointmentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAppointmentNotficInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAppointmentNotficInput, UserUncheckedCreateWithoutAppointmentNotficInput>
+  }
+
+  export type AppointmentUpsertWithoutNotificationInput = {
+    update: XOR<AppointmentUpdateWithoutNotificationInput, AppointmentUncheckedUpdateWithoutNotificationInput>
+    create: XOR<AppointmentCreateWithoutNotificationInput, AppointmentUncheckedCreateWithoutNotificationInput>
+    where?: AppointmentWhereInput
+  }
+
+  export type AppointmentUpdateToOneWithWhereWithoutNotificationInput = {
+    where?: AppointmentWhereInput
+    data: XOR<AppointmentUpdateWithoutNotificationInput, AppointmentUncheckedUpdateWithoutNotificationInput>
+  }
+
+  export type AppointmentUpdateWithoutNotificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    Date?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
+    status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
+    createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAppointmentNestedInput
+    store?: StoreUpdateOneRequiredWithoutAppointmentNestedInput
+  }
+
+  export type AppointmentUncheckedUpdateWithoutNotificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    storeId?: StringFieldUpdateOperationsInput | string
+    Date?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
+    status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
+    createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutAppointmentNotficInput = {
+    update: XOR<UserUpdateWithoutAppointmentNotficInput, UserUncheckedUpdateWithoutAppointmentNotficInput>
+    create: XOR<UserCreateWithoutAppointmentNotficInput, UserUncheckedCreateWithoutAppointmentNotficInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAppointmentNotficInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAppointmentNotficInput, UserUncheckedUpdateWithoutAppointmentNotficInput>
+  }
+
+  export type UserUpdateWithoutAppointmentNotficInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userBussinessType?: NullableStringFieldUpdateOperationsInput | string | null
+    stores?: StoreUpdateManyWithoutOwnerNestedInput
+    likedStores?: StoreLikeUpdateManyWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutSenderNestedInput
+    buyer?: ConversationUpdateManyWithoutBuyerNestedInput
+    UserPresence?: UserPresenceUpdateManyWithoutUserNestedInput
+    Agreement?: AgreementUpdateManyWithoutUserNestedInput
+    TourNotification?: TourNotificationUpdateManyWithoutUserNestedInput
+    Appointment?: AppointmentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAppointmentNotficInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userBussinessType?: NullableStringFieldUpdateOperationsInput | string | null
+    stores?: StoreUncheckedUpdateManyWithoutOwnerNestedInput
+    likedStores?: StoreLikeUncheckedUpdateManyWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    buyer?: ConversationUncheckedUpdateManyWithoutBuyerNestedInput
+    UserPresence?: UserPresenceUncheckedUpdateManyWithoutUserNestedInput
+    Agreement?: AgreementUncheckedUpdateManyWithoutUserNestedInput
+    TourNotification?: TourNotificationUncheckedUpdateManyWithoutUserNestedInput
+    Appointment?: AppointmentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type StoreCreateManyOwnerInput = {
@@ -32346,12 +34325,23 @@ export namespace Prisma {
 
   export type AppointmentCreateManyUserInput = {
     id?: string
+    name: string
+    phoneNumber: string
     storeId: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
+  }
+
+  export type AppointmentNotifCreateManyReceiverInput = {
+    id?: string
+    appoimentId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
   }
 
   export type StoreUpdateWithoutOwnerInput = {
@@ -32666,32 +34656,67 @@ export namespace Prisma {
 
   export type AppointmentUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
     store?: StoreUpdateOneRequiredWithoutAppointmentNestedInput
+    notification?: AppointmentNotifUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     storeId?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+    notification?: AppointmentNotifUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     storeId?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifUpdateWithoutReceiverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    appointment?: AppointmentUpdateOneRequiredWithoutNotificationNestedInput
+  }
+
+  export type AppointmentNotifUncheckedUpdateWithoutReceiverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    appoimentId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifUncheckedUpdateManyWithoutReceiverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    appoimentId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StoreImageCreateManyStoreInput = {
@@ -32739,10 +34764,12 @@ export namespace Prisma {
 
   export type AppointmentCreateManyStoreInput = {
     id?: string
+    name: string
+    phoneNumber: string
     userId: string
     Date?: Date | string
-    startTime: Date | string
-    endTime: Date | string
+    selectTime: string
+    UserPhoto: string
     status?: $Enums.AppointmentStatus
     createdat?: Date | string
   }
@@ -32884,30 +34911,38 @@ export namespace Prisma {
 
   export type AppointmentUpdateWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAppointmentNestedInput
+    notification?: AppointmentNotifUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
+    notification?: AppointmentNotifUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutStoreInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    selectTime?: StringFieldUpdateOperationsInput | string
+    UserPhoto?: StringFieldUpdateOperationsInput | string
     status?: EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
     createdat?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33022,6 +35057,42 @@ export namespace Prisma {
   export type UserPresenceUncheckedUpdateManyWithoutConversationInput = {
     userId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifCreateManyAppointmentInput = {
+    id?: string
+    receiverId: string
+    title: string
+    message: string
+    isRead: boolean
+    createAt?: Date | string
+  }
+
+  export type AppointmentNotifUpdateWithoutAppointmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receiver?: UserUpdateOneRequiredWithoutAppointmentNotficNestedInput
+  }
+
+  export type AppointmentNotifUncheckedUpdateWithoutAppointmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    receiverId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppointmentNotifUncheckedUpdateManyWithoutAppointmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    receiverId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

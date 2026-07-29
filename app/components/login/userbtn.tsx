@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { ModeToggle } from "@/app/dashboard/components/theme/darkbtn";
-import { LogOut, Store, User, User2 } from "lucide-react";
+import { Calendar, LogOut, Store, User, User2 } from "lucide-react";
 import Image from "next/image";
 
 const Userbtn = () => {
@@ -59,6 +59,12 @@ const Userbtn = () => {
           <DropdownMenuItem className="cursor-pointer flex items-center gap-2 hover:bg-accent hover:text-accent-foreground">
             <Store className="w-5 h-5" />
             Store
+          </DropdownMenuItem>
+        </Link>
+        <Link href="/dashboard/appointment">
+          <DropdownMenuItem className="cursor-pointer flex items-center gap-2 hover:bg-accent hover:text-accent-foreground">
+            <Calendar className="w-5 h-5" />
+            Appointment
           </DropdownMenuItem>
         </Link>
 

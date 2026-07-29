@@ -8,8 +8,9 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import NotificationBell from "../addstore/components/TourNotification";
+
 import Userbtn from "@/app/components/login/userbtn";
+import Appointmentbell from "../appointment/components/Appointmentbell";
 
 const DashNav = () => {
   const [count, setCount] = useState(0);
@@ -109,7 +110,7 @@ const DashNav = () => {
           </Button>
         </Link>
         {/* <NotificationBell /> */}
-        <NotificationBell />
+        <Appointmentbell />
 
         <Userbtn />
       </div>

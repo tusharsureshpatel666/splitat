@@ -38,12 +38,13 @@ model User {
   notification      Notification[]
   userBussinessType String?
 
-  messages         Message[]
-  buyer            Conversation[]
-  UserPresence     UserPresence[]
-  Agreement        Agreement[]
-  TourNotification TourNotification[]
-  Appointment      Appointment[]
+  messages          Message[]
+  buyer             Conversation[]
+  UserPresence      UserPresence[]
+  Agreement         Agreement[]
+  TourNotification  TourNotification[]
+  Appointment       Appointment[]
+  AppointmentNotfic AppointmentNotif[]
 }
 
 model Otp {
@@ -353,17 +354,36 @@ enum AppointmentStatus {
 }
 
 model Appointment {
-  id      String   @id @default(uuid())
-  userId  String
-  user    User     @relation(fields: [userId], references: [id])
-  storeId String
-  store   Store    @relation(fields: [storeId], references: [id])
-  Date    DateTime @default(now())
+  id          String @id @default(uuid())
+  name        String
+  phoneNumber String
 
-  startTime DateTime
-  endTime   DateTime
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  storeId    String
+  store      Store    @relation(fields: [storeId], references: [id])
+  Date       DateTime @default(now())
+  selectTime String
+  UserPhoto  String
 
   status AppointmentStatus @default(PENDING)
 
   createdat DateTime @default(now())
+
+  notification AppointmentNotif[]
+}
+
+model AppointmentNotif {
+  id String @id @default(uuid())
+
+  appoimentId String
+  appointment Appointment @relation(fields: [appoimentId], references: [id], onDelete: Cascade)
+
+  receiverId String
+  receiver   User   @relation(fields: [receiverId], references: [id])
+
+  title    String
+  message  String
+  isRead   Boolean
+  createAt DateTime @default(now())
 }

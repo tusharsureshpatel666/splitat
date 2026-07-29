@@ -48,6 +48,9 @@ model User {
   Agreement Agreement[]
   TourNotification TourNotification[]
   Appointment Appointment[]
+  AppointmentNotfic AppointmentNotif[]
+
+  
  
  
 
@@ -393,14 +396,34 @@ model Appointment {
     storeId String
     store Store @relation(fields: [storeId], references: [id])
     Date DateTime @default(now())
-
-    startTime DateTime
+    selectTime String
+    UserPhoto String
+    
  
 
     status AppointmentStatus @default(PENDING)
 
     createdat DateTime @default(now())
     
+    notification AppointmentNotif[]
+  
     
 
 }
+
+model AppointmentNotif {
+  id String @id @default(uuid())
+  
+  appoimentId String
+  appointment Appointment @relation(fields: [appoimentId], references: [id],  onDelete: Cascade)
+
+  receiverId String
+  receiver User @relation(fields: [receiverId], references: [id])
+
+  title String
+  message  String
+  isRead Boolean
+  createAt DateTime @default(now())
+  
+}
+
