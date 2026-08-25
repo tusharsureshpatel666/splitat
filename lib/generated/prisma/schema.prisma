@@ -349,7 +349,7 @@ model Blog {
 enum AppointmentStatus {
   PENDING
   APPROVED
-  CANCELLED
+  REJECTED
   COMPLETED
 }
 

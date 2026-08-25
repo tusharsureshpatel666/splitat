@@ -128,7 +128,7 @@ export type ShareMode = (typeof ShareMode)[keyof typeof ShareMode]
 export const AppointmentStatus: {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
-  CANCELLED: 'CANCELLED',
+  REJECTED: 'REJECTED',
   COMPLETED: 'COMPLETED'
 };
 

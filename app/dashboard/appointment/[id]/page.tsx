@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -38,10 +38,13 @@ interface Appointment {
 
 const AppointmentPage = () => {
   const params = useParams();
+  const router = useRouter();
+
   const id = params?.id as string;
 
   const [appointment, setAppointment] = useState<Appointment | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -55,7 +58,6 @@ const AppointmentPage = () => {
         }
 
         const data: Appointment = await response.json();
-
         setAppointment(data);
       } catch (error) {
         console.error(error);
@@ -66,6 +68,33 @@ const AppointmentPage = () => {
 
     fetchAppointment();
   }, [id]);
+
+  const updateStatus = async (status: "APPROVED" | "REJECTED") => {
+    try {
+      setUpdating(true);
+
+      const response = await fetch(`/api/appoint/notific/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update appointment");
+      }
+
+      // Redirect after successful update
+      router.push("/dashboard/appointment/notific"); // Change this if your route is different
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to update appointment.");
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -123,7 +152,6 @@ const AppointmentPage = () => {
             <div className="flex items-center gap-4">
               <Avatar className="h-12 w-12 sm:h-14 sm:w-14">
                 <AvatarImage src={appointment.user.image || ""} />
-
                 <AvatarFallback>
                   {appointment.user.name.charAt(0)}
                 </AvatarFallback>
@@ -152,7 +180,6 @@ const AppointmentPage = () => {
           </div>
 
           {/* Appointment Details */}
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-5">
               <InfoItem
@@ -195,7 +222,6 @@ const AppointmentPage = () => {
           </div>
 
           {/* Store Details */}
-
           <Card className="bg-muted/40">
             <CardContent className="p-5">
               <h2 className="font-semibold text-lg mb-4">Store Information</h2>
@@ -222,15 +248,23 @@ const AppointmentPage = () => {
           </Card>
 
           {/* Actions */}
-
           {appointment.status === "PENDING" && (
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="flex-1 bg-green-600 hover:bg-green-700">
-                Accept Request
+              <Button
+                onClick={() => updateStatus("APPROVED")}
+                disabled={updating}
+                className="flex-1 bg-green-600 hover:bg-green-700"
+              >
+                {updating ? "Accepting..." : "Accept Request"}
               </Button>
 
-              <Button variant="destructive" className="flex-1">
-                Reject Request
+              <Button
+                variant="destructive"
+                disabled={updating}
+                onClick={() => updateStatus("REJECTED")}
+                className="flex-1"
+              >
+                {updating ? "Updating..." : "Reject Request"}
               </Button>
             </div>
           )}
@@ -255,7 +289,6 @@ function InfoItem({
 
       <div>
         <p className="text-sm text-muted-foreground">{label}</p>
-
         <p className="font-medium break-words">{value}</p>
       </div>
     </div>
